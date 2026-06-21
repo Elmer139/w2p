@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get Where2Play</title>
+<style>
+  :root { --green:#16A34A; --ink:#0f172a; --muted:#64748b; --card:#ffffff; --bg:#f1f5f9; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+         background:linear-gradient(160deg,#ecfdf5,#f1f5f9); color:var(--ink); min-height:100vh;
+         display:flex; align-items:center; justify-content:center; padding:24px; }
+  .card { background:var(--card); border-radius:24px; padding:32px 26px 28px; max-width:380px; width:100%;
+          box-shadow:0 18px 50px rgba(2,6,23,.12); text-align:center; }
+  .ball { font-size:54px; line-height:1; }
+  h1 { font-size:26px; margin:14px 0 6px; font-weight:900; letter-spacing:-.5px; }
+  p.tag { color:var(--muted); font-size:15px; margin:0 0 24px; line-height:1.45; }
+  .btn { display:flex; align-items:center; justify-content:center; gap:10px; width:100%;
+         background:var(--green); color:#fff; font-size:18px; font-weight:800; text-decoration:none;
+         padding:17px; border-radius:16px; border:none; cursor:pointer; box-shadow:0 8px 20px rgba(22,163,74,.3); }
+  .btn:active { transform:translateY(1px); }
+  .sub { margin-top:16px; font-size:14px; color:var(--muted); }
+  .sub a { color:var(--green); font-weight:700; text-decoration:none; cursor:pointer; }
+  .steps { text-align:left; margin:20px 2px 0; font-size:13.5px; color:#475569; line-height:1.5; display:none; }
+  .steps b { color:var(--ink); }
+  .hidden { display:none; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="ball">🤾</div>
+    <h1>Where2Play</h1>
+    <p class="tag">See who's playing at the courts near you — before you go.</p>
+
+    <a id="primary" class="btn" href="#">Get the app</a>
+
+    <div id="androidSteps" class="steps">
+      <b>To install on Android:</b><br>
+      1. Tap the green button (downloads the app).<br>
+      2. If it warns about “unknown apps,” tap <b>Settings → Allow</b>, then <b>Install</b>.<br>
+      3. Open it, sign up, pick <b>Handball</b>. 🖐️
+    </div>
+
+    <div id="iosNote" class="steps">
+      <b>To install on iPhone:</b><br>
+      1. Tap the green button — it opens <b>TestFlight</b> (free Apple app, installs if needed).<br>
+      2. Tap <b>Accept</b>, then <b>Install</b>.<br>
+      3. Open it, sign up, pick <b>Handball</b>. 🖐️
+    </div>
+
+    <div class="sub">
+      <span id="switcher">On a different phone? <a id="toggle">Switch</a></span>
+    </div>
+  </div>
+
+<script>
+  // ── Update these two as things change (APK → Play Store, TestFlight → App Store) ──
+  var ANDROID_URL = "https://expo.dev/artifacts/eas/F6USEQZFIsfcVzm_l5HN7dvvaH5Cvb280y8_jOVk8vI.apk";
+  var IOS_URL     = "";   // ← paste your TestFlight invite link here (e.g. https://testflight.apple.com/join/XXXXXXXX)
+
+  var ua = navigator.userAgent || "";
+  var isIOS = /iPhone|iPad|iPod/i.test(ua);
+  var forced = null; // user can override via Switch
+
+  function render() {
+    var ios = forced ? forced === "ios" : isIOS;
+    var btn = document.getElementById("primary");
+    document.getElementById("androidSteps").style.display = ios ? "none" : "block";
+    document.getElementById("iosNote").style.display     = ios ? "block" : "none";
+
+    if (ios) {
+      if (IOS_URL) { btn.href = IOS_URL; btn.textContent = "📲  Install on iPhone"; }
+      else { btn.href = "#"; btn.textContent = "iPhone version — coming very soon";
+             btn.onclick = function(e){ e.preventDefault(); alert("The iPhone version is being set up. Check back shortly or text Shawn to get on the list!"); }; }
+    } else {
+      btn.href = ANDROID_URL; btn.textContent = "⬇️  Install on Android"; btn.onclick = null;
+    }
+  }
+
+  document.getElementById("toggle").addEventListener("click", function(){
+    forced = (forced ? (forced === "ios" ? "android" : "ios") : (isIOS ? "android" : "ios"));
+    render();
+  });
+  render();
+</script>
+</body>
+</html>
