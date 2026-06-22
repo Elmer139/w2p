@@ -5,83 +5,65 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Get Where2Play</title>
 <style>
-  :root { --green:#16A34A; --ink:#0f172a; --muted:#64748b; --card:#ffffff; --bg:#f1f5f9; }
+  :root { --green:#16A34A; --ink:#0f172a; --muted:#64748b; }
   * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
   body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
          background:linear-gradient(160deg,#ecfdf5,#f1f5f9); color:var(--ink); min-height:100vh;
          display:flex; align-items:center; justify-content:center; padding:24px; }
-  .card { background:var(--card); border-radius:24px; padding:32px 26px 28px; max-width:380px; width:100%;
+  .card { background:#fff; border-radius:24px; padding:34px 26px 30px; max-width:400px; width:100%;
           box-shadow:0 18px 50px rgba(2,6,23,.12); text-align:center; }
-  .ball { font-size:54px; line-height:1; }
-  h1 { font-size:26px; margin:14px 0 6px; font-weight:900; letter-spacing:-.5px; }
-  p.tag { color:var(--muted); font-size:15px; margin:0 0 24px; line-height:1.45; }
-  .btn { display:flex; align-items:center; justify-content:center; gap:10px; width:100%;
-         background:var(--green); color:#fff; font-size:18px; font-weight:800; text-decoration:none;
-         padding:17px; border-radius:16px; border:none; cursor:pointer; box-shadow:0 8px 20px rgba(22,163,74,.3); }
+  .logo { font-size:30px; font-weight:900; letter-spacing:-.6px; }
+  .logo span { color:var(--green); }
+  p.tag { color:var(--muted); font-size:16px; margin:8px 0 26px; line-height:1.45; }
+  .btn { display:flex; align-items:center; justify-content:center; gap:12px; width:100%;
+         font-size:19px; font-weight:800; text-decoration:none; padding:19px; border-radius:16px;
+         border:none; cursor:pointer; margin-bottom:14px; color:#fff; }
+  .btn svg { width:24px; height:24px; flex:0 0 24px; }
+  .ios { background:#0f172a; box-shadow:0 8px 20px rgba(15,23,42,.28); }
+  .android { background:var(--green); box-shadow:0 8px 20px rgba(22,163,74,.28); }
   .btn:active { transform:translateY(1px); }
-  .sub { margin-top:16px; font-size:14px; color:var(--muted); }
-  .sub a { color:var(--green); font-weight:700; text-decoration:none; cursor:pointer; }
-  .steps { text-align:left; margin:20px 2px 0; font-size:13.5px; color:#475569; line-height:1.5; display:none; }
-  .steps b { color:var(--ink); }
-  .hidden { display:none; }
+  .how { margin-top:20px; padding-top:18px; border-top:1px solid #eef2f7;
+         font-size:14.5px; color:#475569; line-height:1.6; text-align:left; }
+  .how b { color:var(--ink); }
 </style>
 </head>
 <body>
   <div class="card">
-    <div class="ball">🤾</div>
-    <h1>Where2Play</h1>
+    <div class="logo">Where<span>2</span>Play</div>
     <p class="tag">See who's playing at the courts near you — before you go.</p>
 
-    <a id="primary" class="btn" href="#">Get the app</a>
+    <a id="iosBtn" class="btn ios" href="#">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.03 2.29-1.27 3.14-2.53.99-1.45 1.4-2.85 1.42-2.92-.03-.01-2.73-1.05-2.76-4.15zM14.62 4.6c.72-.87 1.2-2.08 1.07-3.28-1.03.04-2.28.69-3.02 1.56-.66.77-1.24 2-1.08 3.18 1.15.09 2.32-.59 3.03-1.46z"/></svg>
+      Install on iPhone
+    </a>
 
-    <div id="androidSteps" class="steps">
-      <b>To install on Android:</b><br>
-      1. Tap the green button (downloads the app).<br>
-      2. If it warns about “unknown apps,” tap <b>Settings → Allow</b>, then <b>Install</b>.<br>
-      3. Open it, sign up, pick <b>Handball</b>. 🖐️
-    </div>
+    <a id="androidBtn" class="btn android" href="#">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zM15.53 2.16l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 1.23 12.95 1 12 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 3.26 6 5.01 6 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/></svg>
+      Install on Android
+    </a>
 
-    <div id="iosNote" class="steps">
-      <b>To install on iPhone:</b><br>
-      1. Tap the green button — it opens <b>TestFlight</b> (free Apple app, installs if needed).<br>
-      2. Tap <b>Accept</b>, then <b>Install</b>.<br>
-      3. Open it, sign up, pick <b>Handball</b>. 🖐️
-    </div>
-
-    <div class="sub">
-      <span id="switcher">On a different phone? <a id="toggle">Switch</a></span>
+    <div class="how">
+      <b>How:</b> tap your phone's button above, install, open the app, sign up, and choose <b>Handball</b>. That's it.
     </div>
   </div>
 
 <script>
-  // ── Update these two as things change (APK → Play Store, TestFlight → App Store) ──
+  // ── Update these as things change (APK → Play Store, TestFlight → App Store) ──
   var ANDROID_URL = "https://expo.dev/artifacts/eas/F6USEQZFIsfcVzm_l5HN7dvvaH5Cvb280y8_jOVk8vI.apk";
-  var IOS_URL     = "";   // ← paste your TestFlight invite link here (e.g. https://testflight.apple.com/join/XXXXXXXX)
+  var IOS_URL     = "";   // ← paste TestFlight invite link here (e.g. https://testflight.apple.com/join/XXXXXXXX)
 
-  var ua = navigator.userAgent || "";
-  var isIOS = /iPhone|iPad|iPod/i.test(ua);
-  var forced = null; // user can override via Switch
+  var androidBtn = document.getElementById("androidBtn");
+  androidBtn.href = ANDROID_URL;
 
-  function render() {
-    var ios = forced ? forced === "ios" : isIOS;
-    var btn = document.getElementById("primary");
-    document.getElementById("androidSteps").style.display = ios ? "none" : "block";
-    document.getElementById("iosNote").style.display     = ios ? "block" : "none";
-
-    if (ios) {
-      if (IOS_URL) { btn.href = IOS_URL; btn.textContent = "📲  Install on iPhone"; }
-      else { btn.href = "#"; btn.textContent = "iPhone version — coming very soon";
-             btn.onclick = function(e){ e.preventDefault(); alert("The iPhone version is being set up. Check back shortly or text Shawn to get on the list!"); }; }
-    } else {
-      btn.href = ANDROID_URL; btn.textContent = "⬇️  Install on Android"; btn.onclick = null;
-    }
+  var iosBtn = document.getElementById("iosBtn");
+  if (IOS_URL) {
+    iosBtn.href = IOS_URL;
+  } else {
+    iosBtn.addEventListener("click", function(e){
+      e.preventDefault();
+      alert("The iPhone version is almost ready — it'll be on this same link very soon. (Android is live now.)");
+    });
   }
-
-  document.getElementById("toggle").addEventListener("click", function(){
-    forced = (forced ? (forced === "ios" ? "android" : "ios") : (isIOS ? "android" : "ios"));
-    render();
-  });
-  render();
 </script>
 </body>
 </html>
