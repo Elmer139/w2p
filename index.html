@@ -23,14 +23,17 @@
   .android { background:var(--green); box-shadow:0 8px 20px rgba(22,163,74,.28); }
   .btn:active { transform:translateY(1px); }
   .how { margin-top:20px; padding-top:18px; border-top:1px solid #eef2f7;
-         font-size:14.5px; color:#475569; line-height:1.6; text-align:left; }
+         font-size:14.5px; color:#475569; line-height:1.55; text-align:left; }
   .how b { color:var(--ink); }
+  .how ol { margin:10px 0 0; padding-left:22px; }
+  .how li { margin-bottom:7px; }
+  .how .note { margin-top:13px; font-size:12.5px; color:#94a3b8; }
 </style>
 </head>
 <body>
   <div class="card">
     <div class="logo">Where<span>2</span>Play</div>
-    <p class="tag">See who's playing at the courts near you — before you go.</p>
+    <p class="tag">See where everyone's playing — before you go.</p>
 
     <a id="iosBtn" class="btn ios" href="#">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.03 2.29-1.27 3.14-2.53.99-1.45 1.4-2.85 1.42-2.92-.03-.01-2.73-1.05-2.76-4.15zM14.62 4.6c.72-.87 1.2-2.08 1.07-3.28-1.03.04-2.28.69-3.02 1.56-.66.77-1.24 2-1.08 3.18 1.15.09 2.32-.59 3.03-1.46z"/></svg>
@@ -43,7 +46,14 @@
     </a>
 
     <div class="how">
-      <b>How:</b> tap your phone's button above, install, open the app, sign up, and choose <b>Handball</b>. That's it.
+      <b>After you tap your button:</b>
+      <ol>
+        <li>Install, open the app, and sign up (Google, Apple, or email).</li>
+        <li>Choose <b>your sport</b>, then set your level and nickname.</li>
+        <li>When it asks for your location, choose <b>“Always Allow”</b> — that's what shows you at the courts.</li>
+        <li>Tap <b>Allow</b> for notifications so you know when players show up.</li>
+      </ol>
+      <div class="note">Android: if a message says “install unknown apps,” tap <b>Allow → Install</b>.</div>
     </div>
   </div>
 
@@ -52,8 +62,7 @@
   var ANDROID_URL = "https://expo.dev/artifacts/eas/F6USEQZFIsfcVzm_l5HN7dvvaH5Cvb280y8_jOVk8vI.apk";
   var IOS_URL     = "";   // ← paste TestFlight invite link here (e.g. https://testflight.apple.com/join/XXXXXXXX)
 
-  var androidBtn = document.getElementById("androidBtn");
-  androidBtn.href = ANDROID_URL;
+  document.getElementById("androidBtn").href = ANDROID_URL;
 
   var iosBtn = document.getElementById("iosBtn");
   if (IOS_URL) {
